@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Test js</h1>
+
+<button onclick="run()">Create X</button>
+
+<br/>
+<br/>
+
+<p id="content">
+</p>
+
+<script>
+	function create(n) {
+		let matrix = [];
+
+		for(let index = 0; index < n; index++) {
+			matrix[index] = [];
+
+			for(let index2 = 0; index2 < n; index2++) {
+				matrix[index][index2] = "_";
+	   		}
+		}
+
+		let index2 = 0;
+		let index3 = n-1;
+
+		for(let index = 0; index < n; index++) {
+			matrix[index][index2++] = "X";
+			matrix[index][index3--] = "X";
+		}
+
+		return matrix;
+	}
+
+	function printMatrix(matrix) {
+		let x = "";
+		for(let arr = 0; arr < matrix.length; arr++) {
+			x += matrix[arr].join("") + "<br/>";
+		}
+
+		print(x);
+	}
+
+	function print(text) {
+		document.getElementById("content").innerHTML = text;
+	}
+
+	function run() {
+		let input = prompt("Tamaño");
+		let n = parseInt(input);
+		if(isNaN(n)) {
+			print("Debe ingresar un número");
+			return;
+		}
+
+		if(n === 0) {
+			print("ERROR");
+			return;
+		}
+
+		let matrix = create(n);
+		printMatrix(matrix);
+	}
+</script>
+
+</body>
+</html> 
